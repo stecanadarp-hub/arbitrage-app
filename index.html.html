@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arbitrage Dashboard App</title>
+    <style>
+        /* Reset básico */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0f0f14;
+            color: #e5e7eb;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            margin-top: 0;
+        }
+
+        .card {
+            background: #1a1a1f;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+            margin-bottom: 20px;
+            border: 1px solid #2a2a2a;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #3a3a3a;
+            background: #111113;
+            color: #f1f1f1;
+            margin-top: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #7c3aed;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.2s;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #6d28d9;
+        }
+
+        .result-box {
+            background: #2a1f42;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border: 1px solid #4c3c75;
+            word-wrap: break-word;
+        }
+
+        /* Responsivo para smartphones */
+        @media (max-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            button {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Sports Arbitrage Dashboard</h1>
+
+    <div class="card">
+        <h2>Arbitrage Calculator</h2>
+        <div class="grid">
+            <div>
+                <label>Odd 1:</l
