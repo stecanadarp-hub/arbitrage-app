@@ -88,34 +88,50 @@
             <input type="number" id="stake" placeholder="1000" />
         </div>
     </div>
-    <button onclick="calculateArbitrage()">Calculate</button>
+    <button id="calculateBtn">Calculate</button>
 
     <div id="results" class="result-box" style="display: none;"></div>
 </div>
 
 <script>
-function calculateArbitrage() {
-    let o1 = parseFloat(document.getElementById('odd1').value);
-    let o2 = parseFloat(document.getElementById('odd2').value);
-    let stake = parseFloat(document.getElementById('stake').value);
+document.addEventListener("DOMContentLoaded", function() {
+    const btn = document.getElementById("calculateBtn");
+    btn.addEventListener("click", function() {
+        const o1 = parseFloat(document.getElementById('odd1').value);
+        const o2 = parseFloat(document.getElementById('odd2').value);
+        const stake = parseFloat(document.getElementById('stake').value);
+        const resultsDiv = document.getElementById('results');
 
-    if (!o1 || !o2 || !stake) {
-        alert("Please fill in all fields.");
-        return;
-    }
+        if (!o1 || !o2 || !stake) {
+            alert("Please fill in all fields.");
+            return;
+        }
 
-    let inv1 = 1 / o1;
-    let inv2 = 1 / o2;
-    let totalInv = inv1 + inv2;
+        const inv1 = 1 / o1;
+        const inv2 = 1 / o2;
+        const totalInv = inv1 + inv2;
 
-    let resultsDiv = document.getElementById('results');
+        if (totalInv >= 1) {
+            resultsDiv.style.display = "block";
+            resultsDiv.innerHTML = `<strong>No arbitrage found.</strong>`;
+            return;
+        }
 
-    if (totalInv >= 1) {
+        const stake1 = (inv1 / totalInv) * stake;
+        const stake2 = (inv2 / totalInv) * stake;
+        const profit = (stake / totalInv) - stake;
+
+        const resultText = `
+Arbitrage Found!
+Bet $${stake1.toFixed(2)} on Odd 1 (${o1})
+Bet $${stake2.toFixed(2)} on Odd 2 (${o2})
+Guaranteed Profit: $${profit.toFixed(2)}
+        `;
         resultsDiv.style.display = "block";
-        resultsDiv.innerHTML = `<strong>No arbitrage found.</strong>`;
-        return;
-    }
+        resultsDiv.innerHTML = `<pre>${resultText}</pre>`;
+    });
+});
+</script>
 
-    let stake1 = (inv1 / totalInv) * stake;
-    let stake2 = (inv2 / totalInv) * stake;
-    let profit = (stake / totalInv) - stake;
+</body>
+</html>
